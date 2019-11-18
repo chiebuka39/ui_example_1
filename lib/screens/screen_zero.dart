@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ui_example_1/models/record.dart';
 import 'package:ui_example_1/screens/screen_one.dart';
 import 'dart:math' as math;
 
 import 'package:ui_example_1/screens/screen_two.dart';
+import 'package:ui_example_1/view_models/app_state.dart';
 
 class ScreenZero extends StatefulWidget {
   @override
@@ -11,30 +14,20 @@ class ScreenZero extends StatefulWidget {
 
 class _ScreenZeroState extends State<ScreenZero> {
 
-  List<Record> _records = [
-    Record(name: 'Medical Notes', date: DateTime.now()),
-    Record(name: 'Lab Tests', date: DateTime.now().subtract(Duration(days: 1))),
-    Record(name: 'Genetic Tests', date:  DateTime.now().subtract(Duration(days: 2))),
-    Record(name: 'Allergies', date:  DateTime.now().subtract(Duration(days: 3))),
-    Record(name: 'Vaccinations', date:  DateTime.now().subtract(Duration(days: 4))),
-    Record(name: 'Xray-reports', date:  DateTime.now().subtract(Duration(days: 4))),
-    Record(name: 'Lab Tests', date: DateTime.now().subtract(Duration(days: 10))),
-    Record(name: 'Genetic Tests', date:  DateTime.now().subtract(Duration(days: 11))),
-    Record(name: 'Allergies', date:  DateTime.now().subtract(Duration(days: 11))),
-    Record(name: 'Vaccinations', date:  DateTime.now().subtract(Duration(days: 12))),
-    Record(name: 'Xray-reports', date:  DateTime.now().subtract(Duration(days: 13))),
 
-  ];
 
 
   @override
   Widget build(BuildContext context) {
+    AppState appState = Provider.of<AppState>(context);
     return Scaffold(
         body: CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
+
+          pinned: true,
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(
               Icons.menu,
@@ -164,6 +157,7 @@ class _ScreenZeroState extends State<ScreenZero> {
             ),
             delegate: new SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
+                    Record record = appState.records[index];
                 return InkWell(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_) => ScreenOne()));
@@ -187,7 +181,7 @@ class _ScreenZeroState extends State<ScreenZero> {
                           ),
                         ),
                         SizedBox(height: 10,),
-                        Text("Medical Notes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
+                        Text(record.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
                         SizedBox(height: 10,),
                         Text("Today", style: TextStyle(fontSize: 16, color: Colors.grey),)
                       ],
@@ -238,6 +232,7 @@ class _ScreenZeroState extends State<ScreenZero> {
           ),
           delegate: new SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
+                  Record record = appState.records[index +4];
               return Column(
                 children: <Widget>[
                   new Container(
@@ -256,7 +251,7 @@ class _ScreenZeroState extends State<ScreenZero> {
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text("Medical Notes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
+                  Text(record.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
                   SizedBox(height: 10,),
                   Text("Today", style: TextStyle(fontSize: 16, color: Colors.grey),)
                 ],
@@ -273,10 +268,5 @@ class _ScreenZeroState extends State<ScreenZero> {
 }
 
 
-class Record {
-  String name;
-  DateTime date;
 
-  Record({this.name, this.date});
-}
 
