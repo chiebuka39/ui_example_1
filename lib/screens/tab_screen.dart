@@ -18,7 +18,10 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomNavigator(home: buildBody()),
+      body: CustomNavigator(
+        navigatorKey: navigatorKey,
+          pageRoute: PageRoutes.materialPageRoute,
+          home: buildBody()),
       bottomNavigationBar: Container(
         height: 100,
         color: Colors.white,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ui_example_1/screens/screen_one.dart';
 import 'dart:math' as math;
+
+import 'package:ui_example_1/screens/screen_two.dart';
 
 class ScreenZero extends StatefulWidget {
   @override
@@ -161,28 +164,35 @@ class _ScreenZeroState extends State<ScreenZero> {
             ),
             delegate: new SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                return Column(
-                  children: <Widget>[
-                    new Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-                      height: 10,
-                      decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(1)
-                      ),
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => ScreenOne()));
+                  },
+                  child: Material(
+                    child: Column(
+                      children: <Widget>[
+                        new Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                          height: 10,
+                          decoration: BoxDecoration(
+                              color: Colors.redAccent,
+                              borderRadius: BorderRadius.circular(1)
+                          ),
+                        ),
+                        new Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(4)
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text("Medical Notes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
+                        SizedBox(height: 10,),
+                        Text("Today", style: TextStyle(fontSize: 16, color: Colors.grey),)
+                      ],
                     ),
-                    new Container(
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent,
-                        borderRadius: BorderRadius.circular(4)
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Text("Medical Notes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
-                    SizedBox(height: 10,),
-                    Text("Today", style: TextStyle(fontSize: 16, color: Colors.grey),)
-                  ],
+                  ),
                 );
               },
               childCount: 6,

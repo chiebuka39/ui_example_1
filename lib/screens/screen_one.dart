@@ -15,6 +15,7 @@ class _ScreenOneState extends State<ScreenOne> {
             SliverAppBar(
               pinned: true,
               elevation: 0,
+              leading: BackButton(color: Colors.black,),
               backgroundColor: Colors.white,
               title: Text("Medical Notes", style: TextStyle(color: Colors.black),),
               actions: <Widget>[
