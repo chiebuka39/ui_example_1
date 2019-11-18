@@ -1,5 +1,6 @@
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui_example_1/screens/screen_four.dart';
 import 'package:ui_example_1/screens/screen_one.dart';
 import 'package:ui_example_1/screens/screen_three.dart';
@@ -31,27 +32,32 @@ class _TabScreenState extends State<TabScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                IconButton(icon: Icon(Icons.email),onPressed: (){
+                IconButton(icon: SvgPicture.asset("assets/images/inbox-outline.svg"),onPressed: (){
+                  navigatorKey.currentState.maybePop();
                   setState(() {
                     _index = 0;
                   });
                 },iconSize: 35,),
-                IconButton(icon: Icon(Icons.email),onPressed: (){
+                IconButton(icon: SvgPicture.asset("assets/images/trash-2-outline.svg"),onPressed: (){
+                  navigatorKey.currentState.maybePop();
                   setState(() {
                     _index = 1;
                   });
                 },iconSize: 35,),
-                IconButton(icon: Icon(Icons.email),onPressed: (){
+                IconButton(icon: SvgPicture.asset("assets/images/archive-outline.svg"),onPressed: (){
+                  navigatorKey.currentState.maybePop();
                   setState(() {
                     _index = 2;
                   });
                 },iconSize: 35,),
-                IconButton(icon: Icon(Icons.email),onPressed: (){
+                IconButton(icon: SvgPicture.asset("assets/images/person-delete-outline.svg"),onPressed: (){
+                  navigatorKey.currentState.maybePop();
                   setState(() {
                     _index = 3;
                   });
                 },iconSize: 35,),
-                IconButton(icon: Icon(Icons.email),onPressed: (){
+                IconButton(icon:SvgPicture.asset("assets/images/smartphone-outline.svg"),onPressed: (){
+                  navigatorKey.currentState.maybePop();
                   setState(() {
                     _index = 4;
                   });
@@ -75,6 +81,8 @@ class _TabScreenState extends State<TabScreen> {
     }else if(_index == 3){
       return ScreenThree();
     }else if(_index == 4){
+      return ScreenFour();
+    }else{
       return ScreenFour();
     }
 
